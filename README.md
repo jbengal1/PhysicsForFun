@@ -1,5 +1,5 @@
 # PhysicsForFun
 Some physics simulations, using sfml libraries.
 
-# Other descriptions
-Soon!
+## Other descriptions
+There we go
