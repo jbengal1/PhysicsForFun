@@ -48,7 +48,7 @@ int main()
     shape1.setFillColor(sf::Color::Green);
     shape2.setFillColor(sf::Color::Red);
     
-    Interaction interaction(1);
+    //Interaction interaction(1);
 
     while (window.isOpen())
     {
@@ -66,7 +66,7 @@ int main()
         particle2.updatePos();
         particle2.updateAccel();
 
-        interaction.ElasticCol(&particle1, &particle2);
+        //interaction.ElasticCol(&particle1, &particle2);
 
 
         shape1.setPosition(particle1.getPosX(),particle1.getPosY());

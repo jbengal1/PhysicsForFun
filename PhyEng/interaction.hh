@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cmath>
+
+/*
 #include "particle.hh"
 
 
@@ -14,3 +16,4 @@ class Interaction
     private:
         float a;
 };
+*/

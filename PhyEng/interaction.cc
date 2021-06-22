@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 
+/*
 #include "interaction.hh"
 #include "particle.hh"
 #include "globalVar.hh"
@@ -23,3 +24,4 @@ void Interaction::ElasticCol(Particle &_p1, Particle &_p2){
         _p2.flipDirection();
     }           
 }
+*/
