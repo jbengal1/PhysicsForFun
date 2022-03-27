@@ -19,13 +19,14 @@ void initialize_particles(std::vector<Particle*> particles, double WIN_W, double
         double rad = 20*(i+1);
         int sign = pow(-1, i+1);
         particles[i]->Initialize(rad, rad, 
-                        WIN_W/2 + sign*rad*(i+1), WIN_H/2 - rad,
+                        500, 500,
+                        // WIN_W/2 - rad, WIN_H/2 + sign*rad*(i+1),
                         0, 0,
                         0, 0);
     }
-    particles[0]->setVel(1, 0);
-    particles[1]->setVel(-1, 0);
-    particles[2]->setVel(0, 0);
+    particles[0]->setVel(0, -1);
+    particles[1]->setVel(0, 1);
+    particles[2]->setVel(0, 1);
 }
 
 
@@ -58,7 +59,7 @@ int main(int argc,char** argv)
     for (int i = 0; i < N; i++){ 
         //sf::CircleShape shape_i(particles[i]->getRadius());
         sf::RectangleShape shape_i(sf::Vector2f(particles[i]->getRadius(), particles[i]->getRadius()));
-        shape_i.setPosition(particles[i]->getPosX(),particles[i]->getPosY());
+        shape_i.setPosition(particles[i]->getPosX(),particles[i]->getPosY());        
         shape_i.setFillColor(sf::Color::Green);
         shapes.push_back(shape_i);
     }
@@ -111,11 +112,11 @@ int main(int argc,char** argv)
     shapes.push_back(shape2);
     */
     //Interaction interaction(1);
-
+    outFile  << "First pos" << particles[1]->getPosX()<< " " << particles[1]->getPosY() << std::endl;
+    int count=0;
     while (window.isOpen())
     {
         for(int i=0; i<N; ++i){
-            
             for(int j=0; j<N; ++j){
                 if (j!=i){
                     //particles[i]->setGravivtyInteraction(particles[j]);        
@@ -126,23 +127,24 @@ int main(int argc,char** argv)
             //particles[i].setGravivtyInteraction(particles[i+1]);
             //particle2.setGravivtyInteraction(particle1);
             particles[i]->updateForces();
-            
             particles[i]->updateVel();
             particles[i]->updatePos();
             particles[i]->updateAccel();
-            
             shapes[i].setPosition(particles[i]->getPosX(), particles[i]->getPosY());
-
+        }
+        for(int i=0; i<N; ++i){
             for(int j=i+1; j<N; ++j){
+                if (i==1){outFile  << count << "pos" << particles[1]->getPosX()<< " " << particles[1]->getPosY() << std::endl;}
                 ElasticCol1d(particles[i], particles[j]);
             }
         }
+        count+=1;
 
-        outFile << particles[0]->getEnerg() << " "
-                << particles[1]->getEnerg() << " "
-                << particles[0]->getMomX() << " "
-                << particles[1]->getMomX() 
-                << std::endl;
+        // outFile << particles[0]->getEnerg() << " "
+        //         << particles[1]->getEnerg() << " "
+        //         << particles[0]->getMomX() << " "
+        //         << particles[1]->getMomX() 
+        //         << std::endl;
 
         std::vector< sf::CircleShape* > trail;
 

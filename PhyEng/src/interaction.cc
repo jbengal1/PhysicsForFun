@@ -18,8 +18,11 @@ void ElasticCol1d(Particle *_p1, Particle *_p2){
     if(distance <= R){
         double m = _p1->getMass();
         double M = _p2->getMass();
+        std::cout << "before " << _p1->getPosX() << " " << _p1->getPosY() << std::endl;
         _p1->stepBack();
+        std::cout << "after " << _p1->getPosX() << " " << _p1->getPosY() << std::endl;
         _p2->stepBack();
+
         double ux_0 = _p1->getMomX();
         double vx_0 = _p2->getMomX();
         double uy_0 = _p1->getMomY();
